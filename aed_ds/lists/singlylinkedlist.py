@@ -1,6 +1,6 @@
-from nodes import SingleListNode
-from singlylinkedlistiterator import SinglyLinkedListIterator
-import exceptions
+from aed_ds.lists.nodes import SingleListNode
+from aed_ds.lists.singlylinkedlistiterator import SinglyLinkedListIterator
+from aed_ds.exceptions import EmptyListException, NoSuchElementException, InvalidPositionException
 
 class SinglyLinkedList:
     def __init__(self):
@@ -175,16 +175,5 @@ class SinglyLinkedList:
         self.num_elements = 0
     # Returns an iterator of the elements in the list (in proper sequence).
     def iterator(self):
-        iterator = SinglyLinkedListIterator(self.head)
-        result = ''
-        verify = True
-        while True:
-            result += str(iterator.next()) + ' '
+        return SinglyLinkedListIterator(self.head)
 
-            if verify == False:
-                break
-
-            if not iterator.has_next():
-                verify = False
-
-        return result

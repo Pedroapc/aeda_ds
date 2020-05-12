@@ -1,5 +1,5 @@
-import iterator
-import exceptions
+from aed_ds import tad_iterator
+from aed_ds.exceptions import EmptyListException, NoSuchElementException
 
 class SinglyLinkedListIterator:
     def __init__(self, head):

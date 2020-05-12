@@ -13,7 +13,7 @@ class SingleListNode:
         self.element = element
     
     def set_next(self, next_node):
-        self.next = next_node
+        self.next_node = next_node
 
     def has_next(self):
         if self.next_node == None:
