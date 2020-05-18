@@ -1,6 +1,7 @@
 import unittest
 
 from aed_ds.lists.singly_linked_list import SinglyLinkedList
+from aed_ds.tad_iterator import Iterator
 from aed_ds.exceptions import EmptyListException, InvalidPositionException
 
 class TestSinglyLinkedList(unittest.TestCase):
@@ -61,7 +62,7 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.list.insert_first("element")
         self.assertEqual(self.list.get_first(), "element")
 
-    def test_insert_flast(self):
+    def test_insert_last(self):
         self.list.insert_first("element")
         self.assertEqual(self.list.get_last(), "element")
         self.list.make_empty()
@@ -70,6 +71,20 @@ class TestSinglyLinkedList(unittest.TestCase):
         self.list.insert_last("element")
         self.assertEqual(self.list.get_last(), "element")
     
+    def test_insert(self):
+        self.list.insert("element 1", 0)
+        with self.assertRaises(InvalidPositionException):
+            self.list.insert("element X", 10)
+        self.list.insert("element 2", 1)
+        self.list.insert("element 4", 2)
+        self.list.insert("element 5", 3)
+        self.list.insert("element 3", 2)
+        self.assertEqual(self.list.get(0), "element 1")
+        self.assertEqual(self.list.get(1), "element 2")
+        self.assertEqual(self.list.get(2), "element 3")
+        self.assertEqual(self.list.get(3), "element 4")
+        self.assertEqual(self.list.get(4), "element 5")
+
     def test_remove_first(self):
         with self.assertRaises(EmptyListException):
             self.list.remove_first()
@@ -92,7 +107,15 @@ class TestSinglyLinkedList(unittest.TestCase):
             self.list.remove(6)
         self.assertEqual(self.list.remove(0), "element 1")
         self.assertEqual(self.list.remove(3), "element 5")
+        self.assertEqual(self.list.remove(1), "element 3")
         
+    def test_make_empty(self):
+        self.list.make_empty()
+        self.assertTrue(self.list.is_empty())
+        self.add_elements(5)
+        self.assertFalse(self.list.is_empty())
+        self.list.make_empty()
+        self.assertTrue(self.list.is_empty())
 
-    def test_make_empty(self):pass
-    def test_iterator(self):pass
+    def test_iterator(self):
+        self.assertIsInstance(self.list.iterator(), Iterator)

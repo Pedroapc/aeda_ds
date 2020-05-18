@@ -18,7 +18,7 @@ def setupstream(c, username="amgs"):
         project_name = re.search(f"\/\/.+\/.+\/(.+?)\.git$", origin_url).group(1)
         c.run(f"git remote add upstream https://github.com/{username}/{project_name}.git")
 
-@task(setupstream)
+@task
 def sync(c):
     c.run("git fetch upstream")
     c.run("git merge upstream/develop")
@@ -26,3 +26,10 @@ def sync(c):
 @task
 def pr(c):
     c.run("hub pr list --format='[%I] %cI %uI %t [%H] | %U%n'")
+
+## Sem task
+## Uma vez
+# git remote add upstream https://github.com/amgs/aeda_ds.git
+
+## Sempre
+# invoke sync
