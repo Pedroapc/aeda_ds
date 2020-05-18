@@ -46,6 +46,7 @@ class TestSinglyLinkedList(unittest.TestCase):
             self.list.get(0)
         self.add_elements(5)
         self.assertEqual(self.list.get(2), "element 3")
+        self.assertEqual(self.list.get(4), "element 5")
 
     def test_find(self):
         self.assertEqual(self.list.find("empty list"), -1)

@@ -3,9 +3,8 @@ import unittest
 from aed_ds.lists.doubly_linked_list import DoublyLinkedList
 from aed_ds.exceptions import NoSuchElementException
 
-class TestSinglyLinkedListIterator(unittest.TestCase):
-    def setUp(self):
-        pass
+class TestDoublyLinkedListIterator(unittest.TestCase):
+    def setUp(self): pass
 
     # def test_has_next(self): pass
 
