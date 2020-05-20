@@ -8,6 +8,14 @@ class TestDoublyLinkedList(unittest.TestCase):
     def setUp(self):
         self.list = DoublyLinkedList()
 
+    def add_elements(self, quantity):
+        for i in range(quantity):
+            self.list.insert_last(f"element {i+1}")
+    
+    def remove_elements(self, quantity):
+        for i in range(quantity):
+            self.list.remove_last()
+            
     def test_insert_first(self):
         self.list.insert_first("element 1")
         self.assertEqual(self.list.get(0), "element 1")

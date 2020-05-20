@@ -1,11 +1,11 @@
 from .tad_list import List
 from .nodes import SingleListNode
 from .singly_linked_list_iterator import SinglyLinkedListIterator
-from ..exceptions import EmptyListException, InvalidPositionException
-from .singly_linked_list_iterator import SinglyLinkedListIterator
+from ..exceptions import EmptyListException, InvalidPositionException, NoSuchElementException
+
 
 class SinglyLinkedList(List):
-
+    
     def __init__(self):
         self.head = None
         self.tail = None
@@ -88,7 +88,9 @@ class SinglyLinkedList(List):
         if not self.head:
             raise EmptyListException()
         elif self.head == self.tail:
+            result = self.head.get_element()
             self.make_empty()
+            return result
         else:
             old_head = self.head
             self.head = self.head.get_next()
@@ -100,12 +102,6 @@ class SinglyLinkedList(List):
             raise EmptyListException()
         elif self.size() == 1:
             return self.remove_first()
-        elif self.size() == 2:
-            self.head.set_next(None)
-            old_node = self.head
-            self.tail = self.head
-            self.num_elements -= 1
-            return old_node.get_element() 
         cur_node = self.head
         while cur_node.get_next().get_next() is not None:
             cur_node = cur_node.get_next()
@@ -142,3 +138,4 @@ class SinglyLinkedList(List):
 
     def iterator(self):
         return SinglyLinkedListIterator(self)
+
