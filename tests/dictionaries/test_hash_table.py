@@ -92,3 +92,6 @@ class TestHashTable(unittest.TestCase):
             item = it.next()
             self.assertIn(item.get_key(), [f"key_{i+1}" for i in range(5)])
             self.assertIn(item.get_value(), [f"value_{i+1}" for i in range(5)])
+            
+if __name__ == "__main__":
+    unittest.main()
